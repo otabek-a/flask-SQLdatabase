@@ -1,18 +1,21 @@
 
 from flask import Flask, request
-
+from db import Smartphone
 app = Flask(__name__)
+
 
 ## view all smartphone
 @app.route('/smartphones', methods=['GET'])
 def get_all_smartphones():
+    son=Smartphone('smartphone_store.db')
     """Returns all smartphones in the database"""
-    return 
+    return son.sql_get_all_smartphones()
 # view all smartphones by id
 @app.route('/smartphones/id/<id>', methods=['GET'])
 def get_product_by_id(id):
+    son=Smartphone('smartphone_store.db')
     """Returns smartphones in the database by id"""
-    return
+    return son.sql_get_product_by_id(int(id))
 
 # view smartphone by name
 @app.route('/smartphones/name/<name>', methods=['GET'])
